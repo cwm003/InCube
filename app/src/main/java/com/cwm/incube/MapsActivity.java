@@ -12,7 +12,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
-
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -106,7 +105,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         listLatLng.add(latLng);
         listMarker.add(marker);
         clearPolyline();
-        polyline = mMap.addPolyline(new PolylineOptions().addAll(listLatLng));
+        polyline = mMap.addPolyline(new PolylineOptions().addAll(listLatLng)
+                .color(Color.argb(255,0,175,0)));
     }
 
     private void MarkerOnClick(){
@@ -129,7 +129,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         polyline.remove();
         PolygonOptions polygonOptions = new PolygonOptions();
         polygon = mMap.addPolygon(polygonOptions.addAll(listLatLng)
-                .fillColor(Color.GREEN));
+                .strokeWidth((float)3.5)
+                .strokeColor(Color.argb(255,0,175,0))
+                .fillColor(Color.argb(30,0,255,0)));
     }
 
     private void computeArea(){
