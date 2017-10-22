@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "628707452198",
+    "firebase_url": "https://incube-1507459317782.firebaseio.com",
+    "project_id": "incube-1507459317782",
+    "storage_bucket": "incube-1507459317782.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:628707452198:android:b74d89f53a300d57",
+        "android_client_info": {
+          "package_name": "com.cwm.incube"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "628707452198-vt7opb7tgk654bdph22nk9gf5st13bsg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cwm.incube",
+            "certificate_hash": "bf90b05d97cafb5ebe9fa500ac3d1741af90f0a3"
+          }
+        },
+        {
+          "client_id": "628707452198-5mulafvno5gs59t74ljgg91m1cbn9r35.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdRzHq5l-z-Hucm9FWggJ0F9yVA-OFFGU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "628707452198-5mulafvno5gs59t74ljgg91m1cbn9r35.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
