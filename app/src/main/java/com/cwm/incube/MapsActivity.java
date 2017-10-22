@@ -24,6 +24,8 @@ import com.google.android.gms.maps.model.Polygon;
 import com.google.android.gms.maps.model.PolygonOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.maps.android.SphericalUtil;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +35,7 @@ import static com.cwm.incube.R.id.map;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private double area;
     List<LatLng> listLatLng = new ArrayList<>();
     List<Marker> listMarker = new ArrayList<>();
     Polyline polyline;
@@ -111,6 +114,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public boolean onMarkerClick(Marker marker) {
                 if(listLatLng.get(0).equals(marker.getPosition())){
                     addPolygon();
+                    computeArea();
                     return false;
                 }else{
                     deleteMarker(marker);
@@ -126,6 +130,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         PolygonOptions polygonOptions = new PolygonOptions();
         polygon = mMap.addPolygon(polygonOptions.addAll(listLatLng)
                 .fillColor(Color.GREEN));
+    }
+
+    private void computeArea(){
+        area = SphericalUtil.computeArea(listLatLng);
+        Log.d("DebugTag", "Area: " + Double.toString(area));
+
     }
 
     private void deleteMarker(Marker marker){
