@@ -39,6 +39,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".MapsActivity" />
+        <activity android:name=".Programinput"></activity>
     </application>
 
 </manifest>

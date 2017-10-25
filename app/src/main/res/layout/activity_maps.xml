@@ -1,8 +1,37 @@
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:map="http://schemas.android.com/apk/res-auto"
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/map"
-    android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.cwm.incube.MapsActivity" />
+    android:background="#FFFFFF"
+    tools:context="com.cwm.incube.MapsActivity">
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="355dp"
+        android:layout_height="459dp"
+        android:layout_weight="1"
+        tools:context=".MapsActivity"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="26dp"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.538" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="เสร็จสิ้น"
+        android:layout_marginRight="2dp"
+        android:background="@drawable/borderbutton"
+        app:layout_constraintRight_toRightOf="@+id/map"
+        android:layout_marginTop="18dp"
+        app:layout_constraintTop_toBottomOf="@+id/map" />
+
+
+</android.support.constraint.ConstraintLayout>
