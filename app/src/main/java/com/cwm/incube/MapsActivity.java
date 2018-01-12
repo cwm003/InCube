@@ -15,6 +15,7 @@ import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
@@ -30,6 +31,9 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.maps.android.SphericalUtil;
 
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,11 +42,13 @@ import static com.cwm.incube.R.id.map;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private double area;
+    private double area=0.0;
     List<LatLng> listLatLng = new ArrayList<>();
     List<Marker> listMarker = new ArrayList<>();
     Polyline polyline;
     Polygon polygon;
+    TextView areatext ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +65,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 startActivity(x);
             }
         });
+
     }
 
     @Override
@@ -127,6 +134,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 if(listLatLng.get(0).equals(marker.getPosition())){
                     addPolygon();
                     computeArea();
+                    DecimalFormat df = new DecimalFormat("#.##");
+                    area = Double.valueOf(df.format(area));
+                    areatext  = (TextView)findViewById(R.id.textView5);
+                    areatext.setText(String.valueOf(area));
                     return false;
                 }else{
                     deleteMarker(marker);
