@@ -58,6 +58,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         checkPermission();
         super.onCreate(savedInstanceState);
+        overridePendingTransition(R.anim.fadein,R.anim.fadeout);
         setContentView(R.layout.activity_maps);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(map);
         mapFragment.getMapAsync(this);

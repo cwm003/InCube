@@ -22,6 +22,7 @@ public class news extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransition(R.anim.fadein,R.anim.fadeout);
         setContentView(R.layout.activity_news);
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Blog");
         newsblog = (RecyclerView) findViewById(R.id.news_list) ;
