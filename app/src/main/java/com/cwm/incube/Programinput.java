@@ -18,7 +18,7 @@ public class Programinput extends AppCompatActivity {
         _tonewsblog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent x =new Intent(getApplicationContext(),news.class) ;
+                Intent x =new Intent(getApplicationContext(),MainActivity.class) ;
                 startActivity(x);
             }
         });
