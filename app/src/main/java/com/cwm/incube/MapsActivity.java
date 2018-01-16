@@ -199,7 +199,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             if(listLatLng.get(i).longitude>endPointE.longitude){
                 endPointE=listLatLng.get(i);
             }
-        }return new LatLng(endPointN.latitude,endPointN.longitude);
+        }return new LatLng(endPointN.latitude,endPointE.longitude);
     }
 
     private LatLng endPointSW(){
