@@ -40,8 +40,8 @@
         </activity>
         <activity android:name=".MapsActivity" />
         <activity android:name=".Programinput" />
-        <activity android:name=".Select_app" />
-        <activity android:name=".news_app"></activity>
+        <activity android:name=".news" />
+        <activity android:name=".Select_apps"></activity>
     </application>
 
 </manifest>

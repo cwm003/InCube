@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,7 +14,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
-public class Select_app extends AppCompatActivity {
+public class news extends AppCompatActivity {
 
     private RecyclerView newsblog ;
     private DatabaseReference mDatabase ;
@@ -23,7 +22,7 @@ public class Select_app extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_select_app);
+        setContentView(R.layout.activity_news);
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Blog");
         newsblog = (RecyclerView) findViewById(R.id.news_list) ;
         newsblog.setHasFixedSize(true);
