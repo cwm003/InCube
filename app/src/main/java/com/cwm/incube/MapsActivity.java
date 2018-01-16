@@ -18,6 +18,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.Circle;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -28,6 +30,7 @@ import com.google.android.gms.maps.model.Polygon;
 import com.google.android.gms.maps.model.PolygonOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.maps.android.PolyUtil;
 import com.google.maps.android.SphericalUtil;
 
 
@@ -36,6 +39,7 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import static com.cwm.incube.R.id.map;
 
@@ -155,6 +159,60 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .strokeWidth((float)3.5)
                 .strokeColor(Color.argb(255,0,175,0))
                 .fillColor(Color.argb(30,0,255,0)));
+        addTree();
+    }
+
+    private void addTree(){
+        Random rand = new Random();
+        int treeCount = rand.nextInt(50)+20;
+        LatLng endPointNE = endPointNE();
+        LatLng endPointSW = endPointSW();
+        for (int i = 0; i < treeCount; i++) {
+            Log.d("DebugTag", "treeCount: " + i);
+            while (true){
+                Random position = new Random();
+                double treeLat = (position.nextDouble()*(endPointNE.latitude-endPointSW.latitude))+endPointSW.latitude;
+                double treeLng = (position.nextDouble()*(endPointNE.longitude-endPointSW.longitude))+endPointSW.longitude;
+                Log.d("DebugTag", "LatLng: " + treeLat+","+treeLng);
+                LatLng treeLatLng = new LatLng(treeLat,treeLng);
+                if(PolyUtil.containsLocation(treeLatLng, listLatLng, true)){
+                    Log.d("DebugTag", "treeLatLng: " + treeLatLng);
+                    mMap.addCircle(new CircleOptions()
+                            .center(new LatLng(treeLat, treeLng))
+                            .radius(50)
+                            .fillColor(Color.RED));
+                    break;
+                }
+            }
+
+        }
+
+    }
+
+    private LatLng endPointNE(){
+        LatLng endPointN = listLatLng.get(0);
+        LatLng endPointE = listLatLng.get(0);
+        for (int i = 1; i < listLatLng.size(); i++) {
+            if(listLatLng.get(i).latitude>endPointN.latitude){
+                endPointN=listLatLng.get(i);
+            }
+            if(listLatLng.get(i).longitude>endPointE.longitude){
+                endPointE=listLatLng.get(i);
+            }
+        }return new LatLng(endPointN.latitude,endPointN.longitude);
+    }
+
+    private LatLng endPointSW(){
+        LatLng endPointS = listLatLng.get(0);
+        LatLng endPointW = listLatLng.get(0);
+        for (int i = 1; i < listLatLng.size(); i++) {
+            if(listLatLng.get(i).latitude<endPointS.latitude){
+                endPointS=listLatLng.get(i);
+            }
+            if(listLatLng.get(i).longitude<endPointW.longitude){
+                endPointW=listLatLng.get(i);
+            }
+        }return new LatLng(endPointS.latitude,endPointW.longitude);
     }
 
     private void computeArea(){
