@@ -179,7 +179,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     Log.d("DebugTag", "treeLatLng: " + treeLatLng);
                     mMap.addCircle(new CircleOptions()
                             .center(new LatLng(treeLat, treeLng))
-                            .radius(50)
+                            .radius(5)
                             .fillColor(Color.RED));
                     break;
                 }
@@ -199,7 +199,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             if(listLatLng.get(i).longitude>endPointE.longitude){
                 endPointE=listLatLng.get(i);
             }
-        }return new LatLng(endPointN.latitude,endPointN.longitude);
+        }return new LatLng(endPointN.latitude,endPointE.longitude);
     }
 
     private LatLng endPointSW(){
