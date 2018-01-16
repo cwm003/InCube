@@ -179,7 +179,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     Log.d("DebugTag", "treeLatLng: " + treeLatLng);
                     mMap.addCircle(new CircleOptions()
                             .center(new LatLng(treeLat, treeLng))
-                            .radius(50)
+                            .radius(5)
                             .fillColor(Color.RED));
                     break;
                 }
