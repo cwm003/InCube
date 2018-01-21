@@ -18,7 +18,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -34,8 +33,6 @@ import com.google.maps.android.PolyUtil;
 import com.google.maps.android.SphericalUtil;
 
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -160,12 +157,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .strokeWidth((float)3.5)
                 .strokeColor(Color.argb(255,0,175,0))
                 .fillColor(Color.argb(30,0,255,0)));
-        addTree();
+        //addRandomTree(25,50);
+        addGridTree();
     }
 
-    private void addTree(){
+    private void addTree(double lat,double lng,int r,int g,int b){
+        mMap.addCircle(new CircleOptions()
+                .center(new LatLng(lat, lng))
+                .radius(1.5)
+                .strokeColor(Color.argb(0,0,0,0))
+                .fillColor(Color.argb(40,r,g,b)));
+        mMap.addCircle(new CircleOptions()
+                .center(new LatLng(lat, lng))
+                .radius(0.5)
+                .strokeColor(Color.argb(0,0,0,0))
+                .fillColor(Color.argb(255,r,g,b)));
+    }
+
+    private void addRandomTree(int min,int max){
         Random rand = new Random();
-        int treeCount = rand.nextInt(50)+20;
+        int treeCount = rand.nextInt(max)+min;
         LatLng endPointNE = endPointNE();
         LatLng endPointSW = endPointSW();
         for (int i = 0; i < treeCount; i++) {
@@ -178,16 +189,38 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 LatLng treeLatLng = new LatLng(treeLat,treeLng);
                 if(PolyUtil.containsLocation(treeLatLng, listLatLng, true)){
                     Log.d("DebugTag", "treeLatLng: " + treeLatLng);
-                    mMap.addCircle(new CircleOptions()
-                            .center(new LatLng(treeLat, treeLng))
-                            .radius(5)
-                            .fillColor(Color.RED));
+                    addTree(treeLat,treeLng,255,0,0);
                     break;
                 }
             }
 
         }
+    }
 
+    private void addGridTree(){
+        LatLng endPointNE = endPointNE();
+        LatLng endPointSW = endPointSW();
+        for (double i = endPointNE.latitude; i > endPointSW.latitude; i -= meterToRad(3)) {
+            for(double j = endPointSW.longitude; j < endPointNE.longitude;j += meterToRad(3)) {
+                if (PolyUtil.containsLocation(new LatLng(i,j), listLatLng, true)) {
+                    addTree(i,j, 255, 0, 0);
+                }
+            }
+        }
+
+//        while (true){
+//            //Random position = new Random();
+//            //double treeLat = (position.nextDouble()*(endPointNE.latitude-endPointSW.latitude))+endPointSW.latitude;
+//            //double treeLng = (position.nextDouble()*(endPointNE.longitude-endPointSW.longitude))+endPointSW.longitude;
+//
+//            if(PolyUtil.containsLocation(referenceLatLng, listLatLng, true)){
+//                break;
+//            }
+//        }
+    }
+
+    private double meterToRad(double m){
+        return m*0.00000898;
     }
 
     private LatLng endPointNE(){
@@ -254,5 +287,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
     }
+
 }
 
