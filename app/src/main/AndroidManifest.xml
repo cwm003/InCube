@@ -41,7 +41,8 @@
         <activity android:name=".MapsActivity" />
         <activity android:name=".Programinput" />
         <activity android:name=".news" />
-        <activity android:name=".Select_apps"></activity>
+        <activity android:name=".Select_apps" />
+        <activity android:name=".Resultprogram"></activity>
     </application>
 
 </manifest>

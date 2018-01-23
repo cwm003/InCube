@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context="com.cwm.incube.Resultprogram">
+
+    <TextView
+        android:id="@+id/maintree"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="36dp"
+        android:text="kuy"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="@+id/thirdtree"
+        app:layout_constraintStart_toStartOf="@+id/thirdtree"
+        app:layout_constraintTop_toBottomOf="@+id/thirdtree" />
+
+    <TextView
+        android:id="@+id/secondtree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="72dp"
+        android:text="kuy"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="@+id/maintree"
+        app:layout_constraintStart_toStartOf="@+id/maintree"
+        app:layout_constraintTop_toBottomOf="@+id/maintree" />
+
+    <TextView
+        android:id="@+id/thirdtree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="24dp"
+        android:textColor="#000000"
+        android:text="kuy"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
