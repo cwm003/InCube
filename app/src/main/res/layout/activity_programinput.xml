@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
@@ -17,7 +19,6 @@
             android:id="@+id/textView3"
             android:layout_width="80dp"
             android:layout_height="40dp"
-            android:layout_marginLeft="0dp"
             android:layout_marginTop="10dp"
             android:gravity="center_vertical"
             android:text="พันธ์ุไม้รอง:"
@@ -26,6 +27,19 @@
             app:layout_constraintHorizontal_weight="1"
             app:layout_constraintLeft_toLeftOf="@+id/textView10"
             app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+        <Spinner
+            android:id="@+id/thirdtreespinner"
+            android:layout_width="223dp"
+            android:layout_height="42dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.421"
+            app:layout_constraintStart_toEndOf="@+id/textView3"
+            app:layout_constraintTop_toTopOf="@+id/textView3" />
 
         <TextView
             android:id="@+id/textView10"
@@ -40,20 +54,19 @@
             app:layout_constraintLeft_toLeftOf="@+id/textView2"
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-        <EditText
-            android:id="@+id/editText8"
-            android:layout_width="213dp"
-            android:layout_height="38dp"
-            android:layout_marginLeft="1dp"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="#000000"
-            android:ems="10"
-            android:hint="2nd"
-            android:inputType="textPersonName"
-            android:textColor="#000000"
-            android:textColorHint="#cacaca"
-            app:layout_constraintLeft_toLeftOf="@+id/editText3"
-            app:layout_constraintTop_toBottomOf="@+id/editText3" />
+        <Spinner
+            android:id="@+id/secondtreespinner"
+            android:layout_width="223dp"
+            android:layout_height="42dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.421"
+            app:layout_constraintStart_toEndOf="@+id/textView10"
+            app:layout_constraintTop_toTopOf="@+id/textView10" />
 
         <TextView
             android:id="@+id/textView"
@@ -85,37 +98,19 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-        <EditText
-            android:id="@+id/editText2"
-            android:layout_width="215dp"
-            android:layout_height="41dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="#000000"
-            android:hint="3rd"
-            android:inputType="textPersonName"
-            android:textColor="#000000"
-            android:textColorHint="#cacaca"
-            app:layout_constraintLeft_toLeftOf="@+id/editText8"
-            app:layout_constraintTop_toBottomOf="@+id/editText8" />
-
-        <EditText
-            android:id="@+id/editText3"
-            android:layout_width="213dp"
-            android:layout_height="40dp"
+        <Spinner
+            android:id="@+id/maintreespinner"
+            android:layout_width="223dp"
+            android:layout_height="42dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="21dp"
-            android:backgroundTint="#000000"
-            android:hint="Maintree"
-            android:textColor="#000000"
-            android:textColorHint="#cacaca"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toRightOf="@+id/textView2"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.421"
+            app:layout_constraintStart_toEndOf="@+id/textView2"
+            app:layout_constraintTop_toTopOf="@+id/textView2" />
 
         <TextView
             android:id="@+id/textView4"
