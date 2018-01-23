@@ -164,7 +164,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private void addTree(double radius ,double lat,double lng,int r,int g,int b){
         mMap.addCircle(new CircleOptions()
                 .center(new LatLng(lat, lng))
-                .radius(radius )
+                .radius(radius)
                 .strokeColor(Color.argb(0,0,0,0))
                 .fillColor(Color.argb(40,r,g,b)));
         mMap.addCircle(new CircleOptions()
@@ -200,8 +200,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private void addGridTree(double radius ){
         LatLng endPointNE = endPointNE();
         LatLng endPointSW = endPointSW();
-        for (double i = endPointNE.latitude; i > endPointSW.latitude; i -= meterToRad(radius *2)) {
-            for(double j = endPointSW.longitude; j < endPointNE.longitude;j += meterToRad(radius *2)) {
+        for (double i = endPointNE.latitude - meterToRad(radius); i > endPointSW.latitude; i -= meterToRad(radius *2)) {
+            for(double j = endPointSW.longitude + meterToRad(radius); j < endPointNE.longitude;j += meterToRad(radius *2)) {
                 if (PolyUtil.containsLocation(new LatLng(i,j), listLatLng, true)) {
                     addTree(radius ,i,j, 255, 0, 0);
                 }
@@ -220,7 +220,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private double meterToRad(double m){
-        return m*0.00000898;
+        return m*0.00000899;
     }
 
     private LatLng endPointNE(){
