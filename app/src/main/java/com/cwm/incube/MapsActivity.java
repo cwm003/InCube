@@ -158,13 +158,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .strokeColor(Color.argb(255,0,175,0))
                 .fillColor(Color.argb(30,0,255,0)));
         //addRandomTree(25,50);
-        addGridTree();
+        addGridTree(1.5);
     }
 
-    private void addTree(double lat,double lng,int r,int g,int b){
+    private void addTree(double radius ,double lat,double lng,int r,int g,int b){
         mMap.addCircle(new CircleOptions()
                 .center(new LatLng(lat, lng))
-                .radius(1.5)
+                .radius(radius )
                 .strokeColor(Color.argb(0,0,0,0))
                 .fillColor(Color.argb(40,r,g,b)));
         mMap.addCircle(new CircleOptions()
@@ -174,7 +174,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .fillColor(Color.argb(255,r,g,b)));
     }
 
-    private void addRandomTree(int min,int max){
+    private void addRandomTree(double radius ,int min,int max){
         Random rand = new Random();
         int treeCount = rand.nextInt(max)+min;
         LatLng endPointNE = endPointNE();
@@ -189,7 +189,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 LatLng treeLatLng = new LatLng(treeLat,treeLng);
                 if(PolyUtil.containsLocation(treeLatLng, listLatLng, true)){
                     Log.d("DebugTag", "treeLatLng: " + treeLatLng);
-                    addTree(treeLat,treeLng,255,0,0);
+                    addTree(radius ,treeLat,treeLng,255,0,0);
                     break;
                 }
             }
@@ -197,13 +197,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
-    private void addGridTree(){
+    private void addGridTree(double radius ){
         LatLng endPointNE = endPointNE();
         LatLng endPointSW = endPointSW();
-        for (double i = endPointNE.latitude; i > endPointSW.latitude; i -= meterToRad(3)) {
-            for(double j = endPointSW.longitude; j < endPointNE.longitude;j += meterToRad(3)) {
+        for (double i = endPointNE.latitude; i > endPointSW.latitude; i -= meterToRad(radius *2)) {
+            for(double j = endPointSW.longitude; j < endPointNE.longitude;j += meterToRad(radius *2)) {
                 if (PolyUtil.containsLocation(new LatLng(i,j), listLatLng, true)) {
-                    addTree(i,j, 255, 0, 0);
+                    addTree(radius ,i,j, 255, 0, 0);
                 }
             }
         }
