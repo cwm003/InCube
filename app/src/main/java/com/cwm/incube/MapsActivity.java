@@ -204,13 +204,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
-    private void addGridTree(double radius ){
+    private void addGridTree(double mainRadius,double subRadius ){
         LatLng endPointNE = endPointNE();
         LatLng endPointSW = endPointSW();
-        for (double i = endPointNE.latitude - meterToRad(radius); i > endPointSW.latitude; i -= meterToRad(radius *2)) {
-            for(double j = endPointSW.longitude + meterToRad(radius); j < endPointNE.longitude;j += meterToRad(radius *2)) {
+        for (double i = endPointNE.latitude - meterToRad(mainRadius); i > endPointSW.latitude; i -= meterToRad(mainRadius *2)) {
+            for(double j = endPointSW.longitude + meterToRad(mainRadius); j < endPointNE.longitude;j += meterToRad(mainRadius *2)) {
                 if (PolyUtil.containsLocation(new LatLng(i,j), listLatLng, true)) {
-                    addTree(radius ,i,j, 255, 0, 0);
+                    addTree(mainRadius ,i,j, 255, 0, 0);
+                }
+            }
+        }
+        for (double i = endPointNE.latitude - meterToRad(mainRadius*2); i > endPointSW.latitude; i -= meterToRad(mainRadius*2)) {
+            for(double j = endPointSW.longitude + meterToRad(mainRadius*2); j < endPointNE.longitude;j += meterToRad(mainRadius*2)) {
+                if (PolyUtil.containsLocation(new LatLng(i,j), listLatLng, true)) {
+                    addTree(subRadius ,i,j, 255, 255, 0);
                 }
             }
         }
@@ -296,15 +303,31 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == RESULT_OK) {
             clearCircle();
             String mainTree = data.getStringExtra("main_tree");
+            String subTree = data.getStringExtra("third_tree");
+            double mainRadius=0;
+            double subRadius=0;
             if(mainTree.equals("มะม่วง")){
-                addGridTree(1.5);
+                mainRadius = 1.5;
             }else if(mainTree.equals("ลำไย")){
-                addGridTree(4);
+                mainRadius = 4;
             }
+            if(subTree.equals("พริกไทย")){
+                subRadius = 0.75;
+            }else if(subTree.equals("ผักกูด")){
+                subRadius = 0.75;
+            }else if(subTree.equals("ตะไคร้")){
+                subRadius = 0.75;
+            }else if(subTree.equals("คะน้า")){
+                subRadius = 0.75;
+            }else if(subTree.equals("ผักบุ้งจีน")){
+                subRadius = 0.75;
+            }
+            addGridTree(mainRadius,subRadius);
         }
     }
 
